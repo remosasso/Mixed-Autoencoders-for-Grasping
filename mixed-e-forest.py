@@ -64,7 +64,7 @@ x_train = x_train.reshape((x_train.shape[0], -1))
 x_test = x_test.reshape((x_test.shape[0], -1))
 model = RandomTreesEmbedding(n_estimators=500, max_depth=None, n_jobs=-1)
 print("Fitting forest")
-#model.fit(x_train)
+model.fit(x_train)
 print("Encoding")
 x_encoded_train = model.encode(x_train)
 print("Decoding")
@@ -119,7 +119,6 @@ for filter_sizes in FILTER_SIZES:
         # ===================================================================================================
         # And go!
         
-        # added by hamidreza
         ae = Model(input_layer, [pos_output, cos_output, sin_output, width_output, rec_output])
         
         ae.compile(optimizer='rmsprop', loss='mean_squared_error')
