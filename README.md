@@ -1,3 +1,3 @@
-This repository consists of two alternative Generative Grasping CNNs (see [GG-CNN](https://github.com/dougsm/ggcnn)) using mixed autoencoders (AE). 
+This repository consists of two alternative Generative Grasping CNNs (see [GG-CNN](https://github.com/dougsm/ggcnn)) using mixed autoencoders (AE), both improving performance. 
 
 One mixed AE incorporates a simple dense AE, the other integrates [eForest](https://github.com/kingfengji/eForest) (random forest based AE) into the architecture. 
