@@ -95,13 +95,11 @@ for filter_sizes in FILTER_SIZES:
         x = Conv2D(no_filters[2], kernel_size=filter_sizes[2], strides=(2, 2), padding='same', activation='relu')(x)        
         
         # ====================================================================================================
-        # added by Hamidreza
         # a DAE network for object representatioin learning and also feature visualization
         
         encoded_flat = Flatten()(x)
-        #dx = Dense(750, activation='relu')(encoded_flat) #80.54
-        #dx = Dense(850, activation='relu')(encoded_flat) # 82.00
-        #decoded_flat = Dense(5000, activation='sigmoid')(dx)
+        dx = Dense(850, activation='relu')(encoded_flat)
+        decoded_flat = Dense(5000, activation='sigmoid')(dx)
         x = Reshape((25, 25, 8), name='reshape')(encoded_flat)
         # ====================================================================================================
         
@@ -117,13 +115,11 @@ for filter_sizes in FILTER_SIZES:
         sin_output = Conv2D(1, kernel_size=2, padding='same', activation='linear', name='sin_out')(x)
         width_output = Conv2D(1, kernel_size=2, padding='same', activation='linear', name='width_out')(x)
         
-        # added by hamidreza
         rec_output = Conv2D(1, kernel_size=2, padding='same', activation='linear', name='rec_out')(x)
         
         # ===================================================================================================
         # And go!
         
-        # added by hamidreza
         ae = Model(input_layer, [pos_output, cos_output, sin_output, width_output, rec_output])
         
         ae.compile(optimizer='rmsprop', loss='mean_squared_error')
